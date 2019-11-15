@@ -1,18 +1,44 @@
-{% extends 'base.html' %} {% import 'bootstrap/wtf.html' as wtf%} {% block styles%} {{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}"> {% endblock%} {% block content%}
+{%extends 'base.html'%}
+{%load static%}
+{% block content %}
+{{block.super}}
+<br><br><br>
 <div class="container">
   <div class="row">
-    <div class="col-xs-4">
-      {{wtf.quick_form(form)}}
+    <div class="col-md-6 col-sm-12">
+      <img src="{{profile.profile_photo.url}}" alt="bikcha" width="150px" height="150px" class="rounded-circle">
     </div>
-    <div class="col-xs-4">
-      <p>Update Profile Photo</p>
-      <form action="{{url_for('main.update_pic',user_id = current_user.id)}}" method="post" enctype="multipart/form-data">
-        <input type="file" name="profile-pic" class="form-control" required>
-        <div class="btn-container m-4">
-          <input type="submit" value="Upload Photo" class="btn bio-btn">
+    <div class="col-md-6 col-sm-12">
+      <div class="yass">
+        <div class="ok">
+          <b>
+            <p>{{profile.username}}</p>
+          </b>
         </div>
-      </form>
+        <div class="button">
+          <a href="#" style="border:1px solid lightgrey;border-radius:2px;color:black;text-decoration:none">Edit profile</a>
+        </div>
+        <div class="cog">
+          <i class="fas fa-cog"></i>
+        </div>
+      </div><br><br>
+      <h2>Bio</h2>
+      {{profile.bio}}
     </div>
   </div>
-  {% endblock %}
+  <br>
+  <hr>
+  <div class="row">
+    {%for post in posts%}
+
+    <div class="card" style="width:18rem">
+      <img src="{{post.image.url}}" alt="told ya" width="100%">
+    </div>
+
+
+    {%endfor%}
+  </div>
+</div>
+
+
+{% endblock %}

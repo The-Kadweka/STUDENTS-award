@@ -1,19 +1,14 @@
-from . import db
-from flask_login import UserMixin
-from app import login_manager
-from werkzeug.security import generate_password_hash,check_password_hash
-from time import time
+from django.db import models
+from django.contrib.auth.models import User
+from tinymce.models import HTMLField
+# Create your models here.
+class Profile(models.Model):
+    profile_photo= models.ImageField(upload_to = 'articles/', blank = True)
+    bio=models.CharField(max_length =50)
+    username = models.CharField(max_length=30, blank=True)
+    user_id = models.IntegerField(default=0)
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
-
-class User(UserMixin,db.Model):
-    """
-    Class  to create users
-    """
-    __tablename__ = "users"
-    id = db.Column(db.Integer,primary_key = True)
-    username = db.Column(db.String(40),unique = True, index=True)
-    email = db.Column(db.String(255),unique = True, index = True)
-    bio = db.Column(db.String)
+    def __str__(self):
+        return self.bio
+    def save_profile(self):
+        self.save()

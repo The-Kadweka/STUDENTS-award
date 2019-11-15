@@ -1,70 +1,40 @@
-{% extends "base.html" %}
-{% block styles%}
+{% load bootstrap3 %} {% load staticfiles %}
+<!DOCTYPE html>
+<html>
 
-{{super()}}
-<link rel="stylesheet" href="../static/css/index.css"> {% endblock %} {% block content %}
-<div class="container">
-  <h1>{{current_user.name | upper}}</h1>
-  <div class="row">
-    <div class="col-sm-12 col-md-5 col-lg-5">
-      {% if user.image %}
-      <div class="img-container">
-        <img class="img-circle" src="{{url_for('static', filename = user.image)}}" class="img-thumbnail profile-pic">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>New Profile</title>
+  {{form.media}}
+
+  {% block styles %} {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% endblock %}
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="card mt-5">
+      <div class="card-body">
+        <h5 class="yu text-center">Create a profile to begin</h5>
+        <form action="{%url 'new-profile'%}" method="post" enctype="multipart/form-data">
+          {%csrf_token%}
+
+          {% bootstrap_form form%}
+          <input type="submit" class="btn btn-success btn-lg" value="Post">
+        </form>
       </div>
-      {% else %}
-      <p>
-        <h3><strong>{{user.username | capitalize}}</strong></h3> has no image
-      </p>
-      {% endif %}
     </div>
-    <div class="col-sm-12 col-md-5 col-lg-5">
-      <p id="bio"><strong>BIO: </strong>{{current_user.bio}}</p>
-      <a href="{{url_for('main.update_profile',user_id = current_user.id)}}"><button class="btn bio-btn">Edit Profile</button></a>
-    </div>
+
   </div>
-  <hr>
-  <h3 id="font">Profile Statistics</h3>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope='col'></th>
-        <th scope='col'>Number</th>
-      </tr>
-    </thead>
-    <tbody id="bio">
-      <tr>
-        <td>Posts</td>
-        <td>{{posts_no|length}}</td>
-      </tr>
-      <tr>
-        <td>Comments</td>
-        <td>{{comments_no|length}}</td>
-      </tr>
-      <tr>
-        <td>Posts Liked</td>
-        <td>{{likes_no|length}}</td>
-      </tr>
-      <tr>
-        <td>Posts Disliked</td>
-        <td>{{dislikes_no|length}}</td>
-      </tr>
-    </tbody>
-  </table>
 
-</div>
-<style>
-  img {
-    max-width: 300px;
-    max-height: 300px;
-  }
+  {% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% bootstrap_javascript %} {% endblock %}
 
-  #bio {
-    font-family: 'Amiri', serif;
-    font-size: 19px;
-  }
+</body>
 
-  #font {
-    font-family: 'Rubik Mono One', sans-serif;
-  }
-</style>
-{% endblock %}
+</html>
