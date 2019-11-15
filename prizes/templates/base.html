@@ -1,0 +1,52 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  {% if title %}
+  <title>pics45 - {{title}}</title>
+  {% else %}
+  <title> pics45 </title>
+  {% endif %}
+  {% block styles %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  {% endblock %}
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">
+  <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSFC5dy9ak5JIjeZRdF6QtW-q8Gms4XTsibV-6qmqnSB3tY2gdY" class="rounded-circle" type="icon/image">
+</head>
+
+<body>
+  <!-- <h1 class="text-center moringa " style='font-family:Fascinate Inline, cursive; color: black'></h1> -->
+
+  {% include "navbar.html" %}
+  {% block content %}
+  <div class="home">
+    <h1>home.cdd</h1>
+  </div>
+  {%endblock%}
+  <!-- JQuery -->
+  </footer>
+  <!-- Footer -->
+  <script type="text/javascript" src="  https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.js"></script>
+  <script type="text/javascript" src="https://cdn.bootcss.com/typed.js/1.1.4/typed.min.js"></script>
+  <script>
+    var typed = new Typed('.moringa', {
+      strings: ["A student Award-center",
+        "Let the best earn it!!!"
+      ],
+      typeSpeed: 120,
+      backSpeed: 120,
+      loop: true
+    });
+  </script>
+
+</body>
+
+</html>
