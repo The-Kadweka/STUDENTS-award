@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
-from .models import Profile
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -13,8 +11,7 @@ def welcome(request):
 
 def past_days_news(request,past_date):
         # Converts data from the string Url
-        date = dt.datetime.strptime(past_date,'%Y-%m-%d').date()
-
+    date = dt.datetime.strptime(past_date,'%Y-%m-%d').date()
     day = convert_dates(date)
     html = f'''
         <html>
