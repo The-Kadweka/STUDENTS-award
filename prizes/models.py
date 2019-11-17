@@ -10,7 +10,6 @@ class Awards(models.Model):
         return self.award_name
 
 class Student(models.Model):
-    pro_pic = models.ImageField(upload='/profile')
     fname=models.CharField(max_length=30)
     lname=models.CharField(max_length=30)
     email=models.CharField(max_length=30)
