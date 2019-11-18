@@ -22,7 +22,7 @@ def convert_dates(dates):
      return day
 def search_results(request):
 
-    if 'student' in request.GET and request.GET["get_all_students"]:
+    if 'student' in request.GET and request.GET["student"]:
         search_term = request.GET.get("student")
         searched_students = Student.search_by_fname(search_term)
         message = f"{search_term}"

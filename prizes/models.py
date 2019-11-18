@@ -28,8 +28,7 @@ class Awards(models.Model):
 
 class Student(models.Model):
     student_image = models.ImageField(upload_to = 'profile/')
-    fname=models.CharField(max_length=30)
-    lname=models.CharField(max_length=30)
+    full_name=models.CharField(max_length=30)
     schoo_name=models.CharField(max_length=30)
     email=models.CharField(max_length=30)
     award= models.ForeignKey(Awards)
