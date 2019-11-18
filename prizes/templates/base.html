@@ -1,4 +1,4 @@
-{% load bootstrap4 %}
+{% load bootstrap3 %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -25,15 +25,7 @@
   {% include "navbar.html" %}
 
   {% block content %}
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <h1 class=>News for {{date|date:"l d-F Y"}}</h1>
-      </div>
-      <div class="col-md-2"></div>
-    </div>
-  </div>
+
   {%endblock%}
 
   {% block scripts %}

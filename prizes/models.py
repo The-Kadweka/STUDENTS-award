@@ -9,6 +9,22 @@ class Awards(models.Model):
 
     def __str__(self):
         return self.award_name
+    @classmethod
+    def todays_awards(cls):
+        today = dt.date.today()
+        awards = cls.objects.filter(pub_date__date7 = today)
+        return awards
+
+    @classmethod
+    def show_all(cls):
+        today = dt.date.today()
+        awards= cls.objects.filter(pub_date__date = today)
+        return awards
+
+    @classmethod
+    def days_news(cls,date):
+        students = cls.objects.filter(pub_date__date = date)
+        return students
 
 class Student(models.Model):
     student_image = models.ImageField(upload_to = 'profile/')
@@ -18,15 +34,11 @@ class Student(models.Model):
     email=models.CharField(max_length=30)
     award= models.ForeignKey(Awards)
 
-    def __str__(self):
-        return self.fname
-    @classmethod
-    def todays_awards(cls):
-        today = dt.date.today()
-        students = cls.objects.filter(pub_date__date7 = today)
-        return students
-
-    @classmethod
-    def days_news(cls,date):
-        students = cls.objects.filter(pub_date__date = date)
-        return students
+    # @classmethod
+    # def get_all_students(cls):
+    #     students= cls.objects.all()
+    #     return students
+    # @classmethod
+    # def search_by_fname(cls,search_term):
+    #     students = cls.objects.filter(fname__icontains=search_term)
+    #     return students

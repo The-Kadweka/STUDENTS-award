@@ -5,24 +5,18 @@ from .models import Awards,Student
 
 # Create your views here.
 def index(request):
-    date = dt.date.today()
-    students = Student.todays_awards()
-    return render(request, 'students.html',{'date': date,"students":students})
+    students = Student.get_all_students()
+    return render(request, 'students.html',{"students":students})
 
 
 
-def past_days(request,past_date):
+def convert_dates(dates):
 
-    try:
-        # Converts data from the string Url
-        date = dt.datetime.strptime(past_date,'%Y-%m-%d').date()
-    except ValueError:
-        # Raise 404 error when ValueError is thrown
-        raise Http404()
-        assert False
+    # Function that gets the weekday number for the date.
+     day_number = dt.date.weekday(dates)
 
-    if date == dt.date.today():
-        return redirect(news_today)
+     days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday',"Sunday"]
 
-    news = Article.days_news(date)
-    return render(request, 'all-news/past-news.html', {"date":date,"news":news})
+    # Returning the actual day of the week
+     day = days[day_number]
+     return day
