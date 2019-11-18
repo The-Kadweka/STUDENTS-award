@@ -1,46 +1,46 @@
 {%extends "registration/base.html"%}
 {% load bootstrap3 %}
 {% block content %}
-
-<div class="container ">
+<div class="container mt-5">
   <div class="row">
-    <div class="col-md-3">
+    <!-- Empty div -->
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      {% if form.errors %}
+      <p> Password or Username is incorrect </p>
+      {% endif %}
+      <div class="card p-5">
 
-    </div>
-    <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-6 mt-5 nosho">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQPYZV5alHDixtkqJ_mB9nvfMrIJmiXyjIYM1gpoqWSur2EEXtF" width="100%" alt="masimu"><br> <a href="#"><img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE3mRq-Cifr8WeCxFrbE7kMWNCATGWky1Goku4UYIcWgRE3gOxpg" alt="playstore" width="41%"></a> <a href="#"> <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Get_it_on_Google_play.svg/1200px-Get_it_on_Google_play.svg.png" alt="google" width="48%"></a>
+        <div class="card-header">
+          <h3 class="">Sign In</h3>
         </div>
-        <div class="col-md-6 mt-5">
-          <form action="/accounts/login/" method="post" style="border: 2px solid lightgrey; padding:10%; background-color:white;" class="mt-5">
-            <h4 style="font-family:'Lobster Two', sans-serif;" class="text-center">Instapic</h4>
+        <div class="card-body">
+
+          <form action="/accounts/login/" method="post">
             {% csrf_token %}
-            {% bootstrap_form form %}
-
+            {% bootstrap_form form%}
             <div class="form-group">
-              <input type="submit" class="btn btn-primary btn-sm" value="Login">
+              <input type="submit" class="btn btn-success btn-md" value="LOGIN">
             </div>
-            <div class="row" style="border: 2px solid lightgrey; padding:7%; background-color:white;">
-              <p>Don't have an account? <a href="/accounts/register">Sign Up</a></p>
-            </div>
-
-
 
             <input type="hidden" name="next" value="{{next}}">
 
-
-            <div class="text-muted">
-              <p>Don't have an account? <a href="/accounts/register">Sign up here</a></p>
-            </div>
           </form>
+          <div class="card-footer mt-5">
+            <p class="text-muted">Need an account?</p>
+            <a class="float-right" href="/accounts/register">
+              <input type="submit" class="btn btn-danger btn-md" value="SIGN UP">
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-1">
-    </div>
-  </div>
 
-  {% endblock %}
+    </div>
+
+  </div>
+  <!-- empty div -->
+  <div class="col-md-4"></div>
+</div>
+</div>
+
+{% endblock %}

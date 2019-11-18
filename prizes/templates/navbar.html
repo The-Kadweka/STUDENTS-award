@@ -15,7 +15,33 @@
       <div class="navbar-link">
         <a class="navbar-link" href="{% url 'prizes' %}">Awarding</a>
       </div>
+      <div class="col-sm-6 col-md-6">
+        {% if user.is_authenticated %}
+        <ul>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="{%url 'welcome'%}">Home</a>
+              </li>
+              <li>
+                <a href="/accounts/password/change">Change Password</a>
+              </li>
+              <li>
+                <a href="/logout">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        {% else %}
+        <li>
+          <a class='btn btn-default' href="/accounts/login">Login</a>
+        </li>
 
+        {% endif %}
+      </div>
       <!-- Adding a search form  -->
       <div class="col-sm-4 col-md-4 navbar-right">
 
@@ -31,6 +57,7 @@
         </form>
       </div>
       <!-- search form end -->
+
     </div>
   </nav>
 </body>
