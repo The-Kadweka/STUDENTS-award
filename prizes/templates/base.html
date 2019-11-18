@@ -1,20 +1,5 @@
-<style media="screen">
-  .home {
-    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRwcI_jK_-loSI2GyfTzmWFgOBu2E79MkFydElkFM7naOYpqG3s);
-    background-position: center;
-    background-size: cover;
-    baclground-attachment: fixed;
-    background-color: red;
-    opacity: 0.26;
-    height: 100vh;
-  }
-
-  .gomaz {
-    margin-top: 15%;
-  }
-</style>
-
-{% load static%}
+{% load bootstrap4 %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 
@@ -22,52 +7,39 @@
   <meta charset="utf-8">
 
   {% if title %}
-  <title>pics45 - {{title}}</title>
+  <title>Moringa Tribune - {{title}}</title>
   {% else %}
-  <title> pics45 </title>
+  <title> Moringa Tribune </title>
   {% endif %}
+
   {% block styles %}
+  {% bootstrap_css %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   {% endblock %}
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-  <!-- Bootstrap core CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.8/css/mdb.min.css" rel="stylesheet">
-  <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSFC5dy9ak5JIjeZRdF6QtW-q8Gms4XTsibV-6qmqnSB3tY2gdY" class="rounded-circle" type="icon/image">
+
 </head>
 
 <body>
-  {% include "navbar.html" %}
-  {% block content %}
-  <div class="home">
-    <h1 class="text-center moringa " style='font-family:Fascinate Inline, cursive; color: black'></h1>
-    <div class="home1 text-center ">
-      <h1 class="gomaz">STUDENTS AWARD-CENTER</h1>
-      <p>Let the best student receive the best reward ever</p>
-    </div>
-    <!-- <div class="text-center" style='height: 20%; width: 20%;'>
-      <i class="fas fa-angle-double-down"></i>
-    </div> -->
-  </div>
-  <h1 class='text-center'>News for {{date|date:"l d-F Y"}}</h1>
-  {%endblock%}
-  </footer>
-  <!-- Footer -->
-  <script type="text/javascript" src="  https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.js"></script>
-  <script type="text/javascript" src="https://cdn.bootcss.com/typed.js/1.1.4/typed.min.js"></script>
-  <script>
-    var typed = new Typed('.moringa', {
-      strings: ["A student Award-center",
-        "Let the best earn it!!!"
-      ],
-      typeSpeed: 120,
-      backSpeed: 120,
-      loop: true
-    });
-  </script>
 
+
+  {% include "navbar.html" %}
+
+  {% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <h1 class=>News for {{date|date:"l d-F Y"}}</h1>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+  {%endblock%}
+
+  {% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% bootstrap_javascript %}
+  {% endblock %}
 </body>
 
 </html>

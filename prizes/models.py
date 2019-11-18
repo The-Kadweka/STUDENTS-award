@@ -1,4 +1,5 @@
 from django.db import models
+import datetime as dt
 
 class Awards(models.Model):
     award_name = models.CharField(max_length =30)
@@ -19,3 +20,13 @@ class Student(models.Model):
 
     def __str__(self):
         return self.fname
+    @classmethod
+    def todays_awards(cls):
+        today = dt.date.today()
+        students = cls.objects.filter(pub_date__date7 = today)
+        return students
+
+    @classmethod
+    def days_news(cls,date):
+        students = cls.objects.filter(pub_date__date = date)
+        return students
