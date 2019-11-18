@@ -1,4 +1,4 @@
-Django==1.11
+Django==1.11.23
 django-bootstrap3==11.1.0
 django-tinymce==2.8.0
 Pillow==6.2.1
