@@ -12,7 +12,7 @@ class Awards(models.Model):
     @classmethod
     def todays_awards(cls):
         today = dt.date.today()
-        awards = cls.objects.filter(pub_date__date7 = today)
+        awards = cls.objects.filter(pub_date__date= today)
         return awards
 
     @classmethod

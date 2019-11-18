@@ -1,6 +1,5 @@
 {%extends 'base.html'%}
 {% block content %}
-{{ block.super}}
 
 <div class="container text-center">
   {% for students in students %}
@@ -24,17 +23,48 @@
       <h5 class="font-weight-bold mt-4 mb-3">{{ students.full_name }}</h5>
       <div class="text-uppercase blue-text">
         <strong>{{ students.schoo_name }}</strong> <br>
-        <button type="button" class="btn btn-elegant">{{ students.award }}</button>
+        {% endfor %}
+
+        <!-- Button trigger modal-->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPush">View award</button>
+
+        <!--Modal: modalPush-->
+        <div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-notify modal-info" role="document">
+            <!--Content-->
+            <div class="modal-content text-center">
+              {% for awards in awards %}
+
+              <!--Header-->
+              <div class="modal-header d-flex justify-content-center">
+                <p class="heading">{{ awards.award_name}}</p>
+              </div>
+
+              <!--Body-->
+              <div class="modal-body">
+
+                <i class="fas fa-trophy fa-4x animated rotateIn mb-4"></i>
+
+                <p>{{awards.description}}</p>
+
+              </div>
+
+              <!--Footer-->
+              <div class="modal-footer flex-center">
+                <a href="https://mdbootstrap.com/products/jquery-ui-kit/" class="btn btn-info">{{awarrd.pub_date}}</a>
+                <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">No</a>
+              </div>
+            </div>
+            <!--/.Content-->
+          </div>
+        </div>
+        <!--Modal: modalPush-->
+        {% empty %}
+        <div class="row">
+          <h2 class="text-center">There No News Items</h2>
+        </div>
+        {% endfor %}
 
       </div>
-    </div>
-  </div>
-  {% empty %}
-  <div class="row">
-    <h2 class="text-center">There No News Items</h2>
-  </div>
-  {% endfor %}
 
-</div>
-
-{% endblock %}
+      {% endblock %}

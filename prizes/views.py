@@ -6,7 +6,8 @@ from .models import Awards,Student
 # Create your views here.
 def index(request):
     students = Student.get_all_students()
-    return render(request, 'students.html',{"students":students})
+    awards = Awards.todays_awards()
+    return render(request, 'students.html',{"students":students,'awards':awards})
 
 
 
