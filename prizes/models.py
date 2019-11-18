@@ -34,11 +34,11 @@ class Student(models.Model):
     email=models.CharField(max_length=30)
     award= models.ForeignKey(Awards)
 
-    # @classmethod
-    # def get_all_students(cls):
-    #     students= cls.objects.all()
-    #     return students
-    # @classmethod
-    # def search_by_fname(cls,search_term):
-    #     students = cls.objects.filter(fname__icontains=search_term)
-    #     return students
+    @classmethod
+    def get_all_students(cls):
+        students= cls.objects.all()
+        return students
+    @classmethod
+    def search_by_fname(cls,search_term):
+        students = cls.objects.filter(fname__icontains=search_term)
+        return students

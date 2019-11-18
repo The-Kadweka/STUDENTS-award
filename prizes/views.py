@@ -20,3 +20,15 @@ def convert_dates(dates):
     # Returning the actual day of the week
      day = days[day_number]
      return day
+def search_results(request):
+
+    if 'student' in request.GET and request.GET["get_all_students"]:
+        search_term = request.GET.get("student")
+        searched_students = Student.search_by_fname(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"students": searched_students})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
