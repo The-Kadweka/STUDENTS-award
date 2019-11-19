@@ -1,3 +1,11 @@
+<style>
+  form {
+    width: 45%;
+    margin-left: 30%;
+    text-align: center;
+    margin-top: 10%;
+  }
+</style>
 {% load bootstrap3 %}
 {% load staticfiles %}
 <!DOCTYPE html>
@@ -16,7 +24,49 @@
 </head>
 
 <body>
+  <nav class="navbar navbar-inverse bg-dark">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'welcome' %}">Home</a>
+      </div>
+      <div class="col-sm-6 col-md-6">
+        {% if user.is_authenticated %}
+        <ul style='margin-left: 5%;'>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="{%url 'new-student'%}">Add student</a>
+              </li>
+              <li>
+                <a href="{%url 'awarding'%}">Add Award</a>
+              </li>
+              <li>
+                <a href="/accounts/password/change">Change Password</a>
+              </li>
+              <li>
+                <a href="/logout">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        {% else %}
+        <li>
+          <a class='btn btn-default' href="/accounts/login">Login</a>
+        </li>
 
+        {% endif %}
+
+      </div>
+      <!-- Adding a search form  -->
+      <div class="col-sm-4 col-md-4 navbar-left">
+      </div>
+      <!-- search form end -->
+
+    </div>
+  </nav>
   <form action="{%url 'new-student'%}" method="post" enctype="multipart/form-data">
     {%csrf_token%}
 

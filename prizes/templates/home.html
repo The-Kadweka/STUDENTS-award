@@ -1,3 +1,19 @@
+<style>
+  form {
+    width: 45%;
+    margin-left: 30%;
+    text-align: center;
+    margin-top: 10%;
+  }
+
+  .body {
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQpqz-_MVI60fGhnrxI_3pV6JHl34gjj_ry3oMq7e70_pJ6DAL0);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+</style>
+
 {% load bootstrap3 %}
 {% load staticfiles %}
 <!DOCTYPE html>
@@ -16,13 +32,59 @@
 </head>
 
 <body>
+  <nav class="navbar navbar-inverse bg-dark">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'welcome' %}">Home</a>
+      </div>
 
-  <form action="{%url 'awarding'%}" method="post" enctype="multipart/form-data">
-    {%csrf_token%}
+      <div class="col-sm-6 col-md-6">
+        {% if user.is_authenticated %}
+        <ul>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="{%url 'new-student'%}">Add student</a>
+              </li>
+              <li>
+                <a href="{%url 'awarding'%}">Add Award</a>
+              </li>
+              <li>
+                <a href="/accounts/password/change">Change Password</a>
+              </li>
+              <li>
+                <a href="/logout">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        {% else %}
+        <li>
+          <a class='btn btn-default' href="/accounts/login">Login</a>
+        </li>
 
-    {% bootstrap_form form%}
-    <input type="submit" class="btn btn-success btn-lg" value="Post">
-  </form>
+        {% endif %}
+      </div>
+      <!-- Adding a search form  -->
+      <div class="col-sm-4 col-md-4 navbar-left">
+      </div>
+      <!-- search form end -->
+
+    </div>
+  </nav>
+  <h1>PROVIDE AN AWARDING TITLE</h1>
+  <div class="body">
+    <form action="{%url 'awarding'%}" method="post" enctype="multipart/form-data">
+      {%csrf_token%}
+
+      {% bootstrap_form form%}
+      <input type="submit" class="btn btn-success btn-lg" value="Post">
+    </form>
+
+  </div>
 
   {% block scripts %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
