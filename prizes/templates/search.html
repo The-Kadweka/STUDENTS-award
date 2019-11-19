@@ -15,8 +15,23 @@
 
     {% if students %}
     {% for students in students %}
-    <div class="col-sm-6 col-md-3">
-      <h1>{{students.full_name}}</h1>
+    <div class="card testimonial-card text-center" style="width: 25%;">
+
+      <!-- Background color -->
+      <div class="card-up indigo lighten-1"></div>
+
+      <!-- Avatar -->
+      <div class="avatar mx-auto white">
+        <img src="{{students.student_image.url}}" class="rounded-circle img-fluid" alt="woman avatar" style='width: 200px; height: 200px;'>
+      </div>
+
+      <!-- Content -->
+      <div class="card-body">
+        <!-- Name -->
+        <h4 class="card-title">{{students.full_name}}</h4>
+        <hr>
+        <button class="btn aqua-gradient">View Profile</button>
+      </div>
     </div>
     {% endfor %}
     {% endif %}

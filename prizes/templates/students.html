@@ -1,86 +1,87 @@
-{%extends 'base.html'%}
-{% load static %}
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
+
+{% block content %}
+{{block.super}}
 
 <head>
-  <meta charset="utf-8">
-
-  {% if title %}
-  <title>Moringa Tribune - {{title}}</title>
-  {% else %}
-  <title> Moringa Tribune </title>
-  {% endif %}
-
-  {% block styles %}
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-  <!-- Bootstrap core CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/css/mdb.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-  {% endblock %}
+  <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script>
+    function copyToClipboard(element) {
+      $(element).select();
+      document.execCommand("copy");
+    }
+  </script>
 </head>
+<div class="container-fluid">
+  <div class="row">
+  </div>
+</div>
+<div class="container-fluid">
+  <!--  -->
+  <div class="row">
+    {% for students in students %}
+    <div class="col-lg-4 col-lg-4 col-lg-4 padding-0 hover ">
+      <!-- Rotating card -->
+      <div class="card-wrapper">
+        <div id="card-1" class="card card-rotating text-center">
 
-<body>
-  {% block content %}
-  <!-- Rotating card -->
-  <div class="card-wrapper" style='width:25%'>
-    <div id="card-1" class="card card-rotating text-center">
+          <!-- Front Side -->
+          <div class="face front">
 
-      <!-- Front Side -->
-      <div class="face front">
-        {% for students in students %}
-        <!-- Avatar -->
-        <div class="avatar mx-auto white"><img src="{{ students.student_image.url }}" class="rounded-circle" alt="Sample avatar image." style='width: 150px; height: 150px;'>
-        </div>
+            <!-- Avatar -->
+            <div class="avatar mx-auto white"><img src="{{students.student_image.url}}" class="rounded-circle" alt="Sample avatar image." style="margin-top: 5%; height: 250px; width:300px; padding: 10px;box-shadow: 5px 10px #888888;"
+                data-toggle="modal" data-target="#{{student.id}>
+            </div>
 
-        <!-- Content -->
-        <div class="card-body">
-          <h4 class="font-weight-bold mb-3">{{ students.full_name }}</h4>
-          <p class="font-weight-bold blue-text">{{ students.schoo_name }}</p>
-          <!-- Triggering button -->
-          <a class="rotate-btn" data-card="card-1"><i class="fas fa-redo-alt"></i> Click here to rotate</a>
-        </div>
-      </div>
-      <!-- Front Side -->
-
-      <!-- Back Side -->
-      <div class="face back">
-        <div class="card-body">
-
-          <!-- Content -->
-          <h4 class="font-weight-bold mb-0">About me</h4>
-          <hr>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat tenetur odio suscipit non commodi vel
-            eius veniam maxime?
-            <hr>
-            <!-- Social Icons -->
-            <ul class="list-inline py-2">
-              <li class="list-inline-item"><a class="p-2 fa-lg fb-ic"><i class="fab fa-facebook-f"></i></a></li>
-              <li class="list-inline-item"><a class="p-2 fa-lg tw-ic"><i class="fab fa-twitter"></i></a></li>
-              <li class="list-inline-item"><a class="p-2 fa-lg gplus-ic"><i class="fab fa-google-plus-g"></i></a></li>
-              <li class="list-inline-item"><a class="p-2 fa-lg li-ic"><i class="fab fa-linkedin-in"></i></a></li>
-            </ul>
-            <!-- Triggering button -->
-            <a class="rotate-btn" data-card="card-1"><i class="fas fa-undo"></i> Click here to rotate back</a>
-
+            <!-- Content -->
+            <div class="card-body">
+              <h4 class="font-weight-bold mb-3">{{students.full_name}}</h4>
+              <p class=" font-weight-bold blue-text">{{students.school_name}}</p>
+              <!-- Triggering button -->
+              <a class="rotate-btn" data-card="card-1"><i class="fas fa-redo-alt"></i> Click here to rotate</a>
+            </div>
+          </div>
+          <!-- Front Side -->
         </div>
       </div>
-      <!-- Back Side -->
-
+      <!-- Rotating card -->
+      <!-- <img src="{{students.student_image.url}}" class=" img img-responsive img-thumbnail" style="height: 350px; width:450px; margin-bottom: 10px; padding: 10px;box-shadow: 5px 10px #888888;" data-toggle="modal" data-target="#{{image.id}}"> -->
     </div>
-    {% empty %}
-    <div class="row">
-      <h2 class="text-center">There No News Items</h2>
+    <div class="modal fade" id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h3 class="modal-title" id="exampleModalLongTitle">{{image.image_name}}</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="text-center">
+              <img src='{{image.image.url}}' class="img-responsive" width=100% height=100% alt="Image">
+            </div>
+            <div class="text-center">
+              <blockquote class="blockquote text-center">
+                <p class="mb-0">{{image.image_description}}</p>
+                <footer class="blockquote-footer">Location:{{image.location}} <cite title="Source Title">Posted On: {{image.pub_date}}</cite></footer>
+              </blockquote>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="form-group row">
+              <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 padding-1">
+                <input id="{{image.id}}-url" class="form-control input-md responsive" type="text" value="{{image.image.url}}">
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 padding-2">
+                <button class="btn btn-secondary" onclick="copyToClipboard('#{{image.id}}-url')">Copy</button>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     {% endfor %}
-
   </div>
-
   {% endblock %}
-</body>
-
-</html>
