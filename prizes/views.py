@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
-from .forms import StudentForm
+from .forms import StudentForm,AwardsForm
 import datetime as dt
 from .models import Awards,Student
 
@@ -75,6 +75,23 @@ def search_results(request):
 
 def prizes(request):
     return render(request,'prize.html')
+
+@login_required(login_url='/accounts/login/')
+def awarding(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = AwardsForm(request.POST, request.FILES)
+        if form.is_valid():
+            award = form.save(commit=False)
+            award.Awards = current_user
+            award.save()
+        return redirect('welcome')
+
+    else:
+        form = AwardsForm()
+    return render(request, 'new_student.html', {"form": form})
+
+
 @login_required(login_url='/accounts/login/')
 def new_student(request):
     current_user = request.user
@@ -82,10 +99,17 @@ def new_student(request):
         form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
             student = form.save(commit=False)
-            student.editor = current_user
+            student.student = current_user
             student.save()
         return redirect('welcome')
 
     else:
         form = StudentForm()
     return render(request, 'new_student.html', {"form": form})
+
+@login_required(login_url='/accounts/login/')
+def StudentProfile(request, user_id):
+    student_object = get_object_or_404(Student, pk=student_id)
+    if request.student == student_object:
+        return redirect('profile')
+    return render(request, 'profile.html', locals())

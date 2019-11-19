@@ -1,5 +1,7 @@
+confusable-homoglyphs==3.2.0
 Django==1.11
 django-bootstrap3==11.1.0
+django-registration==2.4.1
 django-tinymce==2.8.0
 Pillow==6.2.1
 pytz==2019.3

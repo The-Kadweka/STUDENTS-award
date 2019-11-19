@@ -1,12 +1,12 @@
-from .models import Student
+from .models import Student,Awards
 from django import forms
-#
-# class NewPostForm(forms.ModelForm):
-#     class Meta:
-#         model = Image
-#         exclude = ['likes', 'comments', 'profile']
 
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
         exclude = ['student_id']
+
+class AwardsForm(forms.ModelForm):
+    class Meta:
+        model = Awards
+        exclude = ['award_id']
