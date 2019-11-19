@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
+from .forms import StudentForm
 import datetime as dt
 from .models import Awards,Student
 
@@ -63,7 +64,7 @@ def search_results(request):
 
     if 'student' in request.GET and request.GET["student"]:
         search_term = request.GET.get("student")
-        searched_students = Student.search_by_fname(search_term)
+        searched_students = Student.search_by_full_name(search_term)
         message = f"{search_term}"
 
         return render(request, 'search.html',{"message":message,"students": searched_students})
@@ -74,3 +75,17 @@ def search_results(request):
 
 def prizes(request):
     return render(request,'prize.html')
+@login_required(login_url='/accounts/login/')
+def new_student(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = StudentForm(request.POST, request.FILES)
+        if form.is_valid():
+            student = form.save(commit=False)
+            student.editor = current_user
+            student.save()
+        return redirect('welcome')
+
+    else:
+        form = StudentForm()
+    return render(request, 'new_student.html', {"form": form})

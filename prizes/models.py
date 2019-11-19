@@ -3,7 +3,7 @@ import datetime as dt
 
 class Awards(models.Model):
     award_name = models.CharField(max_length =30)
-    description = models.CharField(max_length =30)
+    description = models.CharField(max_length =200)
     pub_date = models.DateTimeField(auto_now_add=True)
     student_awarded=models.CharField(max_length=30)
 
@@ -29,7 +29,7 @@ class Awards(models.Model):
 class Student(models.Model):
     student_image = models.ImageField(upload_to = 'profile/')
     full_name=models.CharField(max_length=30)
-    schoo_name=models.CharField(max_length=30)
+    school_name=models.CharField(max_length=30)
     email=models.CharField(max_length=30)
     award= models.ForeignKey(Awards)
 
@@ -38,6 +38,6 @@ class Student(models.Model):
         students= cls.objects.all()
         return students
     @classmethod
-    def search_by_fname(cls,search_term):
-        students = cls.objects.filter(fname__icontains=search_term)
+    def search_by_full_name(cls,search_term):
+        students = cls.objects.filter(full_name__icontains=search_term)
         return students
