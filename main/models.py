@@ -15,7 +15,7 @@ class Award(models.Model):
     award_title= models.CharField(max_length=60)
     description = models.CharField(max_length=200)
     pub_date = models.DateTimeField(auto_now_add=True)
-    student = models.ForeignKey('Student',on_delete=models.CASCADE)
+    # student = models.ForeignKey('Student',on_delete=models.CASCADE)
 
     def __str__(self):
         return self.award_title
@@ -29,8 +29,9 @@ class Student(models.Model):
     owner = models.ForeignKey(User)
     image=models.ImageField(upload_to='images/')
     username = models.CharField(max_length=60)
+    school = models.CharField(max_length=30)
     bio= models.CharField(max_length=250)
-    awards = models.ManyToManyField('Award', related_name='student' ,blank=True)
+    award = models.ForeignKey(Award)
 
     @classmethod
     def update(self,user):

@@ -25,13 +25,13 @@
             <!-- Content -->
             <div class="card-body">
                   <h4 class="font-weight-bold mb-3">{{students.owner.username}}</h4>
-                  <p><a href=" {% url 'awards'%}">Add Award</a></p>
+                  <p><a>{{students.school}}</a></p>
                 <!-- Triggering button -->
               </div>
               <div class="award">
+                <button type="button" class="btn btn-elegant">                <h3>{{students.award}}</h3>
+                </button>
 
-                <h3>AWARD-OFFERED</h3>
-                <p>Award: {{students.awards.awards}} </p>
               </div>
             </div>
           </div>
