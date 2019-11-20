@@ -12,9 +12,9 @@ A website that hosts other websites for users to review.
 
 + [ ] Python3.6
 +  [python3.6 -m venv --without-pip <_the name of your environment>].
-+ activate your virtual environment by running [source virtual/bin/activate]
++ activate your virtual environment by running source virtual/bin/activate
 + curl https://bootstrap.pypa.io/get-pip.py | python
-+ run [pip install -r  requirement.txt] to install all requiremnt
++ run [pip install -r  requirement.txt] to install all requirement
 
 ## How to run the app
 
