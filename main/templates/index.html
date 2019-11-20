@@ -28,10 +28,11 @@
                   <p><a>{{students.school}}</a></p>
                 <!-- Triggering button -->
               </div>
-              <div class="award">
-                <button type="button" class="btn btn-elegant">                <h3>{{students.award}}</h3>
-                </button>
-
+              <a class="dropdown-item text-primary" href="{%url 'awards'%} ">Add Award</a>              <div class="award">
+                <h3>AWARD DETAILS</h3>
+                <hr style="width: 20%;">
+                <img style='width:7%; height: 7%;' src="{{students.award.badge.url}}" alt="images">
+    <p>{{students.award.pub_date}}</p>
               </div>
             </div>
           </div>

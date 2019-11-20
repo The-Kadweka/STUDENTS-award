@@ -68,7 +68,7 @@ WSGI_APPLICATION = 'awwards.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'awarding',
+        'NAME':'home2',
         'USER':'moringa',
         'PASSWORD':'darkweb'
     }
