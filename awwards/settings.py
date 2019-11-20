@@ -68,7 +68,7 @@ WSGI_APPLICATION = 'awwards.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'home2',
+        'NAME':'home4',
         'USER':'moringa',
         'PASSWORD':'darkweb'
     }
