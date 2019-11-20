@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{block.super}}
+
+<head>
+  <div class="container-fluid">
+    <!--  -->
+    <div class="row">
+      {% for students in students %}
+      <div class="col-lg-4 col-lg-4 col-lg-4 padding-0 hover ">
+        <!-- Rotating card -->
+        <div class="card-wrapper">
+          <div id="card-1" class=" card-rotating text-center">
+
+            <!-- Front Side -->
+            <div class="face front">
+
+              <!-- Avatar -->
+              <div class="avatar mx-auto white"><img src="{{students.image.url}}" class="rounded-circle" alt="Sample avatar image." style="margin-top: 5%; height: 250px; width:250px; padding: 10px;box-shadow: 5px 10px #888888;" data-toggle="modal"
+                  data-target="#{{student.id}">
+                        </div>
+</div>
+
+            <!-- Content -->
+            <div class="card-body">
+                  <h4 class="font-weight-bold mb-3">{{students.owner.username}}</h4>
+                  <p><a href=" {% url 'awards'%}">Add Award</a></p>
+                <!-- Triggering button -->
+              </div>
+              <div class="award">
+
+                <h3>AWARD-OFFERED</h3>
+                <p>Award: {{students.awards.awards}} </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        {% endfor %}
+        <div id="course" class="offset">
+          {%for awards in awards %}
+          <div id="myModal" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    {% endfor %}
+  </div>
+  {% endblock %}

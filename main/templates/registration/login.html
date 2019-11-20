@@ -1,0 +1,46 @@
+
+{% extends 'registration/base.html'%}
+
+{% load bootstrap4%}
+{% block content%}
+{% include 'registration/navbar.html'%}
+{{block.super}}
+    <div class="container-fluid">
+        <div class="row parallax-window" data-parallax='scroll' data-image-src='../../static/images/bg.jpeg' >
+            <div class="col-md-6 text-white" style="background-image:url('');background-size:cover;height: 300px;">
+                <div class="pt-5 pl-5 animated">
+                    <h1 class="animated fadeInDownBig slow">K Awwards.</h1><hr>
+                    <h2 class="animated fadeInLeft slower">Every great effort deserves an award</h2>
+                    <h3 class="animated fadeInLeft slower">You do it, We display it. <br>And the public reviews it.</h3>
+                </div>
+            </div>
+            <div class="col-md-6 bg-white" style="height:680px">
+                <div class="row ">
+                    <div class="col-md-2 col-sm-2"></div>
+                    <div class="col-md-8 pt-5">
+                        <div class="card ">
+                            <div class="card-header bg-secondary text-white">
+                                <h2>Please Sign in to continue</h2>
+                            </div>
+                            <div class="card-body bg-light">
+                                <form action="/" method="POST">
+                                    {% csrf_token%}
+                                    {% bootstrap_form form%}
+                                    <div class="card-footer">
+                                        <div class="form-group form-inline ">
+                                            <p class=""> <input type="submit" class="btn btn-primary btn-sm " value="Log in"></p>
+                                            <p class="pl-3"><a class = "btn btn-primary btn-sm " href="/accounts/register/">Sign Up </a></p>
+                                         </div>
+                                         <input type="hidden" name="next" value="/main">
+                                         
+                                     </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock%}

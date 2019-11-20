@@ -1,0 +1,41 @@
+{%extends "registration/base.html"%}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-md-6 parallax-window" data-parallax='scroll' data-image-src='../../static/images/bg.jpeg'>
+        <h1 class=" pl-5 pt-5 text-white animated fadeInDown slow">K Awwards</h1>
+        <h3 class="pl-5 text-white animated fadeInLeft slower">Sign up and post your websites absolutely free! <br>We shall take care of the rest.</h3>
+    </div>
+
+        <div class=" col-md-6 pt-5 pb-5">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+
+                    <div class="card shadow-sm">
+                        <h3 class="card-header text-center text-white bg-secondary">Get a Free account.</h3>
+                    {% if form.errors %}
+                    <p> Ensure you entered the right info </p>
+                    {% endif %}
+                    <div class="card-body">
+                        <form  action="/accounts/register/?next=/main/" method="post" >
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            <div class=" card-footer form-group form-inline">
+                                <p><input type="submit" class="btn btn-primary btn-sm" value="Sign Up"></p>
+                                <p class="pl-3"> <a class="btn btn-primary btn-sm" href="/">Sign In</a></p>
+                            </div>
+                            <input type="hidden" name="next" value="/">
+                        </form>
+                    </div>  
+                    </div>               
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+<!-- empty div -->
+</div>
+{% endblock %}
