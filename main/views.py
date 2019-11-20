@@ -27,7 +27,7 @@ def add_student(request):
 def awards(request):
     title = 'STUDENT AWARD'
     if request.method=='POST':
-        form =AwardForm(request.POST)
+        form = AwardForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect('home')
