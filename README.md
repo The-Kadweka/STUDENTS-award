@@ -11,8 +11,10 @@ A website that hosts other websites for users to review.
 ## Prerequisites
 
 + [ ] Python3.6
-+ [ ] Virtual environment, run the followinng command to install python3.6 -m venv --without-pip <_the name of your environment> or virtualenv <_the name of your virtual environment>.
-+ [] pip install -r  requirement.txt file
++  [python3.6 -m venv --without-pip <_the name of your environment>].
++ activate your virtual environment by running [source virtual/bin/activate]
++ curl https://bootstrap.pypa.io/get-pip.py | python
++ run [pip install -r  requirement.txt] to install all requiremnt
 
 ## How to run the app
 
@@ -46,4 +48,3 @@ Create a virtual environment for the app and run python3.6 manage.py runserver t
 
 This project is licensed under the MIT Open Source license, (c) Hussein
 
-------------------------------------------------------------------------
